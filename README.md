@@ -128,6 +128,6 @@ git lfs pull
 
 ## Usage
 
-Run the Streamlist app:
+Run the Streamlit app:
 
 streamlit run app/main.py
