@@ -2,12 +2,14 @@
 
 import streamlit as st
 import pickle
+import joblib
 import pandas as pd
 import numpy as np
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
+from sklearn.ensemble import RandomForestRegressor
 
 ### Paths and load models ###
 
@@ -24,7 +26,11 @@ model_files = {
 
 models = {}
 for name, file in model_files.items():
-    with open(MODELS_DIR / file, "rb") as f:
+    if name == "Random Forest":
+        model_path = MODELS_DIR / file
+        models[name] = joblib.load(model_path)
+    else:
+      with open(MODELS_DIR / file, "rb") as f:
         models[name] = pickle.load(f)
 
 
@@ -144,30 +150,21 @@ if apply_button:
     
 
 
-    # Feature importance (RF Only)
     if selected_model == "Random Forest":
       st.subheader("Feature Importance")
-      rf_model = models["Random Forest"]
-      if hasattr(rf_model, "named_steps"):
-          # pipeline case
-          rf_model_raw = None
-          for step in rf_model.named_steps.values():
-              if hasattr(step, "feature_importances_"):
-                  rf_model_raw = step
-                  break
-          if rf_model_raw is None:
-              st.error("Random Forest regressor not found in pipeline.")
-      else:
-          rf_model_raw = rf_model
+      
+      rf_gs = models["Random Forest"]  # loaded GridSearchCV
+      rf_model = rf_gs.best_estimator_  # this is a RandomForestRegressor
 
-      if hasattr(rf_model_raw, "feature_importances_"):
-          fi = rf_model_raw.feature_importances_
+      if hasattr(rf_model, "feature_importances_"):
+          fi = rf_model.feature_importances_
           fi_df = pd.DataFrame({"Feature": feature_order, "Importance": fi})
           fi_df = fi_df.sort_values(by="Importance", ascending=False)
 
           fig, ax = plt.subplots(figsize=(8,5))
           sns.barplot(
-              x="Importance", y="Feature", 
+              x="Importance", 
+              y="Feature", 
               data=fi_df, 
               palette=sns.color_palette(["#003478", "#FF6B6B", "#C60C30", "#4D79FF"]),
               ax=ax
@@ -176,6 +173,7 @@ if apply_button:
           st.pyplot(fig)
       else:
           st.error("Feature importances not available for Random Forest model.")
+
 
     #Supporting Plots
     st.subheader("Supporting Plots")
