@@ -7,12 +7,12 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+from pathlib import Path
 
 ### Paths and load models ###
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODEL_DIR = os.path.join(BASE_DIR, "..", "models")
+BASE_DIR = Path(__file__).resolve().parent.parent
+MODELS_DIR = BASE_DIR / "models"
 
 model_files = {
     "Linear Regression": "linear.pkl",
@@ -24,8 +24,7 @@ model_files = {
 
 models = {}
 for name, file in model_files.items():
-    path = os.path.join(MODEL_DIR, file)
-    with open(path, "rb") as f:
+    with open(MODELS_DIR / file, "rb") as f:
         models[name] = pickle.load(f)
 
 
