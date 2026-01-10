@@ -15,8 +15,6 @@ env/
 # Data folder
 data/*.csv
 
-# Saved models
-models/*.pkl
 
 # VS Code settings
 .vscode/
