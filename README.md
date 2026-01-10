@@ -13,8 +13,6 @@ This project predicts the number of rented bikes in Seoul based on environmental
 - [Streamlit App](#streamlit-app)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Folder Structure](#folder-structure)
-- [License](#license)
 
 ---
 
@@ -73,13 +71,13 @@ The project includes the following models:
 
 Performance metrics for each model (example):
 
-| Model                 | MSE       | RMSE    | MAE     | R²     |
-|-----------------------|-----------|---------|---------|--------|
-| Linear Regression     | 202,819   | 450.35  | 336.93  | 0.5132 |
-| Ridge                 | 202,811   | 450.35  | 336.83  | 0.5132 |
-| Lasso                 | 202,815   | 450.35  | 336.70  | 0.5132 |
-| Random Forest         | 54,306    | 233.04  | 139.80  | 0.8697 |
-| K-Nearest Neighbors   | 79,375    | 281.74  | 173.95  | 0.8095 |
+| Model               | MSE     | RMSE   | MAE    | R²     |
+| ------------------- | ------- | ------ | ------ | ------ |
+| Linear Regression   | 202,819 | 450.35 | 336.93 | 0.5132 |
+| Ridge               | 202,811 | 450.35 | 336.83 | 0.5132 |
+| Lasso               | 202,815 | 450.35 | 336.70 | 0.5132 |
+| Random Forest       | 54,306  | 233.04 | 139.80 | 0.8697 |
+| K-Nearest Neighbors | 79,375  | 281.74 | 173.95 | 0.8095 |
 
 > Random Forest performs best in this dataset.
 
@@ -128,20 +126,8 @@ git lfs install
 git lfs pull
 ```
 
-##Usage
+## Usage
 
 Run the Streamlist app:
 
 streamlit run app/main.py
-
-##Folder Structure
-
-Seoul-Bike-Demand/
-├── app/                 # Streamlit app files
-├── data/                # Original and processed datasets
-├── models/              # Saved models (Pickle / Joblib)
-├── notebooks/           # Jupyter notebooks for EDA and model training
-├── requirements.txt     # Python dependencies
-└── README.md            # Project documentation
-
-##License
