@@ -1,6 +1,7 @@
-python
 pandas
 numpy
+matplotlib
 scikit-learn
-pickle
 seaborn
+streamlit
+jupyter
