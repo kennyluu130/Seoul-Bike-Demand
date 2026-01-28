@@ -29,7 +29,7 @@ This project aims to provide accurate bike rental predictions in Seoul to help u
 
 ## Data
 
-The dataset includes hourly bike rental counts along with environmental and temporal features. Key data columns:
+The dataset from the UCI Machine Learning Repository (https://archive.ics.uci.edu/dataset/560/seoul+bike+sharing+demand) includes hourly bike rental counts along with environmental and temporal features. Key data columns:
 
 - `Date`
 - `Rented Bike Count`
@@ -128,6 +128,6 @@ git lfs pull
 
 ## Usage
 
-Run the Streamlist app:
+Run the Streamlit app:
 
 streamlit run app/main.py
