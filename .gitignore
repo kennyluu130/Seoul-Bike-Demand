@@ -12,9 +12,6 @@ env/
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
 
-# Data folder
-data/*.csv
-
 
 # VS Code settings
 .vscode/
