@@ -444,7 +444,7 @@ else:
     st.markdown(f"""
     <div class="kpi-row">
       <div class="kpi-card"><div class="kpi-label">Best R²</div>
-        <div class="kpi-value">0.885</div><div class="kpi-sub">XGBoost</div></div>
+        <div class="kpi-value">0.877</div><div class="kpi-sub">XGBoost</div></div>
       <div class="kpi-card red"><div class="kpi-label">Models Trained</div>
         <div class="kpi-value">{len(MODEL_METRICS)}</div><div class="kpi-sub">regression models</div></div>
       <div class="kpi-card orange"><div class="kpi-label">Features</div>
