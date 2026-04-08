@@ -1,133 +1,97 @@
 # Seoul Bike Demand Prediction
 
-This project predicts the number of rented bikes in Seoul based on environmental, temporal, and holiday-related features. The predictions are made using multiple machine learning models, and a Streamlit app provides an interactive interface for exploring predictions and insights.
+Seoul operates one of the world's largest public bicycle-sharing schemes. Accurately forecasting hourly demand lets city planners **pre-position bikes**, **optimize maintenance schedules**, and **improve rider experience**.
+
+This project builds and compares **seven regression models**, from simple linear baselines to gradient-boosted trees, trained on two full years of hourly sensor data covering weather, time-of-day, and calendar features.
 
 ---
 
-## Table of Contents
+## 📌 Project Overview
 
-- [Project Overview](#project-overview)
-- [Data](#data)
-- [Features](#features)
-- [Models](#models)
-- [Streamlit App](#streamlit-app)
-- [Installation](#installation)
-- [Usage](#usage)
+This project provides an interactive platform to explore bike rental patterns in Seoul and generate real-time predictions.
 
----
-
-## Project Overview
-
-This project aims to provide accurate bike rental predictions in Seoul to help users make informed decisions about biking. Users can:
-
-- Select a model to predict bike demand.
-- Adjust input features like temperature, humidity, hour, and month.
-- Visualize predictions and supporting graphs.
-- Compare different models in terms of performance metrics.
+* **Model Selection:** Choose from 7 different algorithms to see how they handle demand.
+* **Dynamic Inputs:** Adjust temperature, humidity, and time to see immediate prediction changes.
+* **Deep Insights:** Visualize commuter peaks, seasonal swings, and feature importance.
+* **Performance Benchmarking:** Compare tree-based models against linear baselines.
 
 ---
 
-## Data
+## 📊 Analytic Insights
 
-The dataset from the UCI Machine Learning Repository (https://archive.ics.uci.edu/dataset/560/seoul+bike+sharing+demand) includes hourly bike rental counts along with environmental and temporal features. Key data columns:
+Our analysis revealed several critical patterns in how Seoul uses its bike-sharing system:
 
-- `Date`
-- `Rented Bike Count`
-- `Hour`
-- `Temperature(°C)`
-- `Humidity(%)`
-- `Wind speed (m/s)`
-- `Visibility (10m)`
-- `Dew point temperature(°C)`
-- `Solar Radiation (MJ/m2)`
-- `Rainfall(mm)`
-- `Snowfall (cm)`
-- `Month`
-- `Holiday`
-- `Functioning Day`
+| Finding | Detail |
+| :--- | :--- |
+| **Top Predictor** | **Temperature** (demand rises sharply above 10°C). |
+| **Commuter Double-Peak** | Strong **08:00** and **18:00** spikes on weekdays; weekends peak mid-afternoon. |
+| **Seasonal Swing** | Summer demand is ~3x higher than winter. |
+| **Rain Effect** | Rentals drop sharply during any rainfall hours. |
+| **Best Model** | **XGBoost** ($R^2$ 0.877), followed closely by LightGBM. |
+| **Linear Ceiling** | Linear models cap at $R^2 \approx 0.42$, confirming strong non-linearity in the data. |
 
 ---
 
-## Features
+## 🧪 Models & Performance
 
-The project uses the following features:
+We evaluated the models using Mean Squared Error (MSE), Root Mean Squared Error (RMSE), Mean Absolute Error (MAE), and R-squared ($R^2$).
 
-- Numeric: Hour, Temperature, Humidity, Wind speed, Visibility, Dew point, Solar Radiation, Rainfall, Snowfall
-- Categorical: Month, Holiday, Functioning Day
+| Model | MSE | RMSE | MAE | $R^2$ |
+| :--- | :--- | :--- | :--- | :--- |
+| **XGBoost** | **51,221.19** | **226.32** | **126.97** | **0.8771** |
+| **LightGBM** | 53,868.87 | 232.10 | 130.76 | 0.8707 |
+| **Random Forest** | 61,793.77 | 248.58 | 141.15 | 0.8517 |
+| **K-Nearest Neighbors** | 89,352.73 | 298.92 | 171.79 | 0.7855 |
+| **Lasso Regression** | 239,240.59 | 489.12 | 308.74 | 0.4258 |
+| **Ridge Regression** | 240,103.23 | 490.00 | 309.15 | 0.4237 |
+| **Linear Regression** | 240,392.03 | 490.30 | 309.29 | 0.4230 |
 
-All numeric features are scaled for models except Random Forest.
-
----
-
-## Models
-
-The project includes the following models:
-
-- Linear Regression
-- Ridge Regression
-- Lasso Regression
-- Random Forest Regressor
-- K-Nearest Neighbors
-
-Performance metrics for each model (example):
-
-| Model               | MSE     | RMSE   | MAE    | R²     |
-| ------------------- | ------- | ------ | ------ | ------ |
-| Linear Regression   | 202,819 | 450.35 | 336.93 | 0.5132 |
-| Ridge               | 202,811 | 450.35 | 336.83 | 0.5132 |
-| Lasso               | 202,815 | 450.35 | 336.70 | 0.5132 |
-| Random Forest       | 54,306  | 233.04 | 139.80 | 0.8697 |
-| K-Nearest Neighbors | 79,375  | 281.74 | 173.95 | 0.8095 |
-
-> Random Forest performs best in this dataset.
+### 💡 Key Takeaways
+* **Gradient Boosting Wins:** XGBoost and LightGBM achieve the best performance, explaining roughly **87%** of the variance in hourly demand.
+* **Tree-Based Superiority:** The most impactful improvement came from switching from linear to tree-based methods, which handle the non-linear relationship between weather and demand much more effectively.
+* **Interpretability:** While XGBoost wins on metrics, **Random Forest** remains highly valuable for providing clear feature importance rankings.
 
 ---
 
-## Streamlit App
+## 📂 Data & Features
 
-The interactive Streamlit app allows users to:
+The dataset is sourced from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/560/seoul+bike+sharing+demand).
 
-- Select a model (Random Forest default)
-- Input or adjust feature values
-- View predictions and traffic recommendations
-- Compare Random Forest predictions with other models
-- Visualize feature importance (for Random Forest)
-- See supporting plots and predicted bike demand across 24 hours
+### Key Features:
+* **Temporal:** Hour, Month, Holiday, Functioning Day.
+* **Weather:** Temperature (°C), Humidity (%), Wind speed (m/s), Visibility (10m), Dew point temperature (°C), Solar Radiation (MJ/m2), Rainfall (mm), Snowfall (cm).
 
 ---
 
-## Installation
+## 🚀 Installation
 
-1. Clone the repository:
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/kennyluu130/Seoul-Bike-Demand.git](https://github.com/kennyluu130/Seoul-Bike-Demand.git)
+    cd Seoul-Bike-Demand
+    ```
+
+2.  **Set up the environment (Python 3.11):**
+    ```bash
+    python -m venv venv
+    # Activate venv:
+    # Windows: .\venv\Scripts\activate | Mac/Linux: source venv/bin/activate
+    ```
+
+3.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Install Git LFS (Required for model files):**
+    ```bash
+    git lfs install
+    git lfs pull
+    ```
+
+## 💻 Usage
+
+Launch the interactive dashboard to explore the data and generate predictions:
 
 ```bash
-git clone https://github.com/kennyluu130/Seoul-Bike-Demand.git
-cd Seoul-Bike-Demand
-```
-
-2. Create a virtual environment (Python 3.11)
-
-```bash
-python -m venv venv
-```
-
-3. Activate the environment
-
-4. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-5. Install Git LFS (For Random Forest Model)
-
-```bash
-git lfs install
-git lfs pull
-```
-
-## Usage
-
-Run the Streamlit app:
-
 streamlit run app/main.py
