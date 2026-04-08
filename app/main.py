@@ -591,7 +591,7 @@ with tab_analytics:
             plt.tight_layout()
             st.pyplot(fig, use_container_width=True)
 
-        st.caption("Demand rises steeply with temperature. Demands significantly drops with rain. Commuter patterns mean working days outpace holidays.")
+        st.caption("Demand rises steeply with temperature. Demand significantly drops with rain. Commuter patterns mean working days outpace holidays.")
         st.markdown('</div>', unsafe_allow_html=True)
 
         # ── Row 4: Season box plots ────────────────
