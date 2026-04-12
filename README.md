@@ -38,13 +38,13 @@ We evaluated the models using Mean Squared Error (MSE), Root Mean Squared Error 
 
 | Model | MSE | RMSE | MAE | $R^2$ |
 | :--- | :--- | :--- | :--- | :--- |
-| **XGBoost** | **51,221.19** | **226.32** | **126.97** | **0.8771** |
-| **LightGBM** | 53,868.87 | 232.10 | 130.76 | 0.8707 |
-| **Random Forest** | 61,793.77 | 248.58 | 141.15 | 0.8517 |
-| **K-Nearest Neighbors** | 89,352.73 | 298.92 | 171.79 | 0.7855 |
-| **Lasso Regression** | 239,240.59 | 489.12 | 308.74 | 0.4258 |
-| **Ridge Regression** | 240,103.23 | 490.00 | 309.15 | 0.4237 |
-| **Linear Regression** | 240,392.03 | 490.30 | 309.29 | 0.4230 |
+| **XGBoost** | **51,221** | **226.32** | **126.97** | **0.8771** |
+| **LightGBM** | 53,867 | 232.10 | 130.76 | 0.8707 |
+| **Random Forest** | 61,794 | 248.58 | 141.15 | 0.8517 |
+| **K-Nearest Neighbors** | 89,353 | 298.92 | 171.79 | 0.7855 |
+| **Lasso Regression** | 239,241 | 489.12 | 308.74 | 0.4258 |
+| **Ridge Regression** | 240,103 | 490.00 | 309.15 | 0.4237 |
+| **Linear Regression** | 240,392 | 490.30 | 309.29 | 0.4230 |
 
 ### 💡 Key Takeaways
 * **Gradient Boosting Wins:** XGBoost and LightGBM achieve the best performance, explaining roughly **87%** of the variance in hourly demand.
